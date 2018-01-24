@@ -23,38 +23,65 @@ OrderDetail.
  LastName, Address, City, Province, PostalCode, Phone, Date, 
  Subtotal, GST, Total)
 
- **OrderDetailL** (<b class="pk"><u class = "fk">OrderNumber</u>, ItemNumber</b>,
+ **OrderDetail:** (<b class="pk"><u class = "fk">OrderNumber</u>, ItemNumber</b>,
   Description, Quantity, CurrentPrice, SellingPrice, Amount)
 
   ### 2NF
 
   After performing Second-Normal Form, another new table was generated: **Item**.
 
-  **OrderDetail** (<b class="pk"><u class="fk">OrderNumber</u>, <u class="fk">ItemNumber</u></b>,
+  **OrderDetail:** (<b class="pk"><u class="fk">OrderNumber</u>, <u class="fk">ItemNumber</u></b>,
   Quantity, SellingPrice, Amount)
 
-  **Item** (<b class="pk">ItemNumber</b>, Description, CurrentPrice)
+  **Item:** (<b class="pk">ItemNumber</b>, Description, CurrentPrice)
 
 ### 3NF
 
 After performing Third-Normal Form, another new table was generated: **Customer**.
 
-**order** (<b class="pk">OrderNumber</b>, <u class="fk">CustomerNumber</u>, Date, Subtotal, GST, Total)
+**order:** (<b class="pk">OrderNumber</b>, <u class="fk">CustomerNumber</u>, Date, Subtotal, GST, Total)
 
-**Customer** (<b class="pk">CustomerNumber</b>, FirstName, LastName, Address, City, Province, PostalCode,
+**Customer:** (<b class="pk">CustomerNumber</b>, FirstName, LastName, Address, City, Province, PostalCode,
  Phone)
 
 ### Tables after 3<sup>rd</sup> Normal Form
 These are the tables/entities after normalizing the Customer Details View.
 
-**Order** (<b class="pk">OrderNumber</b>, <u class="fk">CustomerNumber</u>, Date, Subtotal, GST, Total)
+**Order:** (<b class="pk">OrderNumber</b>, <u class="fk">CustomerNumber</u>, Date, Subtotal, GST, Total)
 
-**OrderDetail** (<b class="pk"><u class="fk">OrderNumber</u>, <u class="fk">ItemNumber</u></b>, Quantity, SellingPrice, Amount)
+**OrderDetail:** (<b class="pk"><u class="fk">OrderNumber</u>, <u class="fk">ItemNumber</u></b>, Quantity, SellingPrice, Amount)
 
-**Item** (<b class="pk">ItemNumber</b>, Description, CurrentPrice)
+**Item:** (<b class="pk">ItemNumber</b>, Description, CurrentPrice)
 
-**Customer** (<b class="pk">CustomerNumber</b>, FirstName, LastName, Address, City, Province, PostalCode,
+**Customer:** (<b class="pk">CustomerNumber</b>, FirstName, LastName, Address, City, Province, PostalCode,
  Phone)
+
+----
+
+### 0NF - List all Attributes
+
+After performing Zero-Normal form, a single table (entity) was
+generated: **PaymentsLog**.
+
+**PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber, <b class="gp">{</b>Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber<b class="gp">}</b>)
+
+### 1NF - Identify Repeating Groups
+
+After performing First-Normal Form, a new table was generated:
+**Payment**.
+
+**Payment:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber)
+
+**PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber)
+
+### 2NF
+
+After performing First-Normal Form, a new table was generated:
+**Payment**.
+
+**Payment:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber)
+
+**PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber)
 
 ----
 
