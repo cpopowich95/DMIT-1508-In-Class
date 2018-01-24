@@ -68,20 +68,40 @@ generated: **PaymentsLog**.
 ### 1NF - Identify Repeating Groups
 
 After performing First-Normal Form, a new table was generated:
-**Payment**.
+**PaymentsMade**.
 
-**Payment:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber)
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, BalanceOwing, PaymentType, DepositBatchNumber)
 
 **PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber)
 
 ### 2NF
 
-After performing First-Normal Form, a new table was generated:
+After performing Second-Normal Form, a new table was generated:
 **Payment**.
 
-**Payment:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber)
+**Payment:** (<b class="pk">PaymentNumber</b>, PaymentAmount, PaymentType, DepositBatchNumber)
 
-**PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber)
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, Date, BalanceOwing)
+
+### 3NF
+
+After performing Third-Normal Form, a new table was generated:
+**Customer**.
+
+**Customer:** (<b class="pk">CustomerNumber</b>, FirstName, LastName)
+
+**PaymentsLog:** (<b class="pk">OrderNumber</b>,<u class="fk">CustomerNumber</u>, OrderDate, OrderTotal)
+
+### Tables after 3<sup>rd</sup> Normal Form
+These are the tables/entities after normalizing the Payments Log View.
+
+**PaymentsLog:** (<b class="pk">OrderNumber</b>,<u class="fk">CustomerNumber</u>, OrderDate, OrderTotal)
+
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, Date, BalanceOwing)
+
+**Payment:** (<b class="pk">PaymentNumber</b>, PaymentAmount, PaymentType, DepositBatchNumber)
+
+**Customer:** (<b class="pk">CustomerNumber</b>, FirstName, LastName)
 
 ----
 
