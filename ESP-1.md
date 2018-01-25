@@ -70,7 +70,7 @@ generated: **PaymentsLog**.
 After performing First-Normal Form, a new table was generated:
 **PaymentsMade**.
 
-**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber</u>, Payment Number</b>, Date, PaymentAmount, BalanceOwing, PaymentType, DepositBatchNumber)
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber</u>, PaymentID</b>, Date, PaymentAmount, PaymentNumber, BalanceOwing, PaymentType, DepositBatchNumber)
 
 **PaymentsLog:** (<b class="pk">OrderNumber</b>, OrderDate, OrderTotal, FirstName, LastName, CustomerNumber)
 
@@ -79,9 +79,9 @@ After performing First-Normal Form, a new table was generated:
 After performing Second-Normal Form, a new table was generated:
 **Payment**.
 
-**Payment:** (<b class="pk">PaymentNumber</b>, PaymentAmount, PaymentType, DepositBatchNumber)
+**Payment:** (<b class="pk">PaymentID</b>, Date, PaymentAmount, PaymentType)
 
-**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, Date, BalanceOwing)
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, Date, BalanceOwing, DepositBatchNumber)
 
 ### 3NF
 
@@ -97,9 +97,9 @@ These are the tables/entities after normalizing the Payments Log View.
 
 **PaymentsLog:** (<b class="pk">OrderNumber</b>,<u class="fk">CustomerNumber</u>, OrderDate, OrderTotal)
 
-**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, Date, BalanceOwing)
+**PaymentsMade:** (<b class="pk"><u class="fk">OrderNumber, PaymentNumber</u></b>, BalanceOwing, DepositBatchNumber)
 
-**Payment:** (<b class="pk">PaymentNumber</b>, PaymentAmount, PaymentType, DepositBatchNumber)
+**Payment:** (<b class="pk">PaymentNumber</b>, Date, PaymentAmount, PaymentType)
 
 **Customer:** (<b class="pk">CustomerNumber</b>, FirstName, LastName)
 
